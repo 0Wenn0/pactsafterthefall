@@ -1,0 +1,25 @@
+{
+  "name": "pacts-after-the-fall-netlify",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "verify:function": "esbuild netlify/functions/game.ts --bundle --platform=node --format=esm --target=node22 --outfile=.netlify/function-check/game.mjs",
+    "test": "node --test tests/game-flow.test.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}
