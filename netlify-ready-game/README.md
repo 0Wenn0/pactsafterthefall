@@ -2,15 +2,6 @@
 
 A bilingual, browser-based party game for 2–8 players. Players create or join a room with its four-character code, then investigate a crisis, negotiate, cast private verdicts, see the consequences, and reflect on the AI concepts in the story. Every player may choose English or Spanish independently.
 
-## Publish with Netlify Drop
-
-1. Sign in to Netlify and open the team’s **Projects** page.
-2. Choose **Add new project → Deploy manually** (or open Netlify Drop).
-3. Unzip `netlify-ready-game.zip` and drop the extracted project folder into the deploy area while signed in. Netlify reads `netlify.toml`, runs the included build, bundles the function, and publishes the site.
-4. Open the URL Netlify shows. Create a room and share its code with the other players.
-
-Netlify must run the project build so it can bundle the function. Drag-and-drop publishing while signed out uploads files as-is and will not build the function. The game needs no GitHub connection, manually configured environment variables, API keys, or separate database setup. Netlify supplies the Blobs connection to the function.
-
 ## How multiplayer state works
 
 The browser sends game actions to `/.netlify/functions/game` and checks for room updates about once a second. The function stores room state in a strongly consistent Netlify Blobs store and uses ETag conditional writes to prevent simultaneous player actions from silently overwriting one another. The server does not run continuously, and rooms remain available across function invocations and deploys.
